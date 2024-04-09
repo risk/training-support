@@ -1,5 +1,6 @@
 {
   "name": "training-support",
+  "homepage": "https://risk.github.io/training-support/",
   "version": "0.1.0",
   "private": true,
   "scripts": {
