@@ -1,0 +1,209 @@
+[
+  {
+    "id": "common-1", 
+    "type": 0,
+    "name": "準備",
+    "duration": 60
+  },
+  {
+    "id": "common-2",
+    "type": 0,
+    "name": "休憩 １０秒",
+    "duration": 10
+  },
+  {
+    "id": "common-3",
+    "type": 0,
+    "name": "休憩 １分",
+    "duration": 60
+  },
+  {
+    "id": "common-4",
+    "type": 0,
+    "name": "休憩 ５分",
+    "duration": 300
+  },
+  {
+    "id": "common-5",
+    "type": 0,
+    "name": "休憩（気が済むまで）",
+    "duration": -1
+  },
+  {
+    "id": "common-6",
+    "type": 0,
+    "name": "クールダウン",
+    "duration": 120
+  },
+  {
+    "id": "strech-01-01",
+    "type": 1,
+    "name": "腕垂直L字"
+  },
+  {
+    "id": "strech-01-02",
+    "type": 1,
+
+    "name": "腕上"
+  },
+  {
+    "id": "strech-01-03",
+    "type": 1,
+    "name": "腕水平L字"
+  },
+  {
+    "id": "strech-01-04",
+    "type": 1,
+    "name": "右腕上"
+  },
+  {
+    "id": "strech-01-05",
+    "type": 1,
+    "name": "左腕上"
+  },
+  {
+    "id": "strech-02-01",
+    "type": 2,
+    "name": "交互に引く"
+  },
+  {
+    "id": "strech-02-02",
+    "type": 2,
+    "name": "上体を倒す"
+  },
+  {
+    "id": "strech-02-03",
+    "type": 2,
+    "name": "右肩を引く"
+  },
+  {
+    "id": "strech-02-04",
+    "type": 2,
+    "name": "左肩を引く"
+  },
+  {
+    "id": "strech-03-01",
+    "type": 3,
+    "name": "腕を真っ直ぐ"
+  },
+  {
+    "id": "strech-03-02",
+    "type": 3,
+    "name": "手の平が前"
+  },
+  {
+    "id": "strech-03-03",
+    "type": 3,
+    "name": "手の甲が前"
+  },
+  {
+    "id": "strech-03-04",
+    "type": 3,
+    "name": "右向きにひねる"
+  },
+  {
+    "id": "strech-03-05",
+    "type": 3,
+    "name": "左向きにひねる"
+  },
+  {
+    "id": "strech-03-06",
+    "type": 3,
+    "name": "右向きにひねる（上体もひねる）"
+  },
+  {
+    "id": "strech-03-07",
+    "type": 3,
+    "name": "左向きにひねる（上体もひねる）"
+  },
+  {
+    "id": "strech-04-01",
+    "type": 4,
+    "name": "正面"
+  },
+  {
+    "id": "strech-04-02",
+    "type": 4,
+    "name": "横向き"
+  },
+  {
+    "id": "strech-04-03",
+    "type": 4,
+    "name": "背面"
+  },
+  {
+    "id": "strech-05-01",
+    "type": 5,
+    "name": "右足/アキレス腱"
+  },
+  {
+    "id": "strech-05-02",
+    "type": 5,
+    "name": "右足/ふくらはぎ"
+  },
+  {
+    "id": "strech-05-03",
+    "type": 5,
+    "name": "右足/前もも"
+  },
+  {
+    "id": "strech-05-04",
+    "type": 5,
+    "name": "右足/桃から尻あたり"
+  },
+  {
+    "id": "strech-05-05",
+    "type": 5,
+    "name": "左足/アキレス腱"
+  },
+  {
+    "id": "strech-05-06",
+    "type": 5,
+    "name": "左足/ふくらはぎ"
+  },
+  {
+    "id": "strech-05-07",
+    "type": 5,
+    "name": "左足/前もも"
+  },
+  {
+    "id": "strech-05-08",
+    "type": 5,
+    "name": "左足/桃から尻あたり"
+  },
+  {
+    "id": "strech-06-01",
+    "type": 6,
+    "name": "右足/アキレス腱"
+  },
+  {
+    "id": "strech-06-02",
+    "type": 6,
+    "name": "左足/アキレス腱"
+  },
+  {
+    "id": "strech-06-03",
+    "type": 6,
+    "name": "足/足首で押上"
+  },
+  {
+    "id": "strech-06-04",
+    "type": 6,
+    "name": "足/足の指で押上"
+  },
+  {
+    "id": "strech-06-05",
+    "type": 6,
+    "name": "足（ハの字）/屈伸"
+  },
+  {
+    "id": "strech-06-06",
+    "type": 6,
+    "name": "足（ハの字）/足首で押上"
+  },
+  {
+    "id": "strech-06-07",
+    "type": 6,
+    "name": "足（ハの字）/足指で押上"
+  }
+]
