@@ -9,7 +9,8 @@ import {
   Stack, HStack,
   Heading,
   Text,
-  Button
+  Button,
+  VStack
 } from '@chakra-ui/react'
 import { secToMins } from '@/utils/stringConverter'
 import { TrainingItem, ItemActions } from '@/components/TrainingItem'
@@ -90,7 +91,7 @@ export default function Index(props: PageIndexProps) {
     duration: 0
   })
 
-  const progressRef = useRef<TrainingExecute>(null)
+  const progressRef = useRef<TrainingProgress>(null)
 
   const onItemAdd = (id: string) => {
     console.log('add!', id)
@@ -148,7 +149,6 @@ export default function Index(props: PageIndexProps) {
                 setExecuteList(addList)
               }}>Add all training</Button>
             </HStack>
-            {/* <Stack spacing='4'> */}
             <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
               {props.items.map(item => (
                   <TrainingItem
@@ -164,7 +164,6 @@ export default function Index(props: PageIndexProps) {
                   />
                 )
               )}
-            {/* </Stack> */}
             </SimpleGrid>
           </Box>
           <Box flex="1" p={4}>
@@ -204,47 +203,71 @@ export default function Index(props: PageIndexProps) {
                 }
               }}>Done</Button>
             </HStack>
-            <TrainingItem
-              hidden={executeTraininig.id === ''}
-              id={`exec-${executeTraininig.id}`}
-              header={getTrainingTypes(executeTraininig.type)?.name}
-              name={executeTraininig.name}
-              description="説明仮置き"
-              duration={executeTraininig.duration || -1}
-              bg={getTrainingTypes(executeTraininig.type)?.bg || 'white'}
-              mode={ItemActions.none}
-            />
-            <TrainingProgress
-              ref={progressRef}
-              id={executeTraininig.id}
-              header={getTrainingTypes(executeTraininig.type)?.name}
-              name={executeTraininig.name}
-              description=''
-              duration={executeTraininig.duration}
-              onStart={() => { console.log("Start!") }}
-              onDone={() => {
-                if(executeList.length === 0) {
-                  return
-                }
-                const target = executeList.slice(0)[0]
-                setExecuteTraining(target)
-                setExecuteList(executeList.slice(1))
-                if(progressRef.current) {
-                  progressRef.current.start()
-                }
-              }}
-            />
+            <Flex>
+              <Stack flexGrow={1}>
+                <TrainingItem
+                  hidden={executeTraininig.id === ''}
+                  id={`exec-${executeTraininig.id}`}
+                  header={getTrainingTypes(executeTraininig.type)?.name}
+                  name={executeTraininig.name}
+                  description="説明仮置き"
+                  duration={executeTraininig.duration || -1}
+                  bg={getTrainingTypes(executeTraininig.type)?.bg || 'white'}
+                  mode={ItemActions.none}
+                />
+              </Stack>
+              <TrainingProgress
+                ref={progressRef}
+                hidden={executeTraininig.id === ''}
+                id={executeTraininig.id}
+                header={getTrainingTypes(executeTraininig.type)?.name}
+                name={executeTraininig.name}
+                description=''
+                duration={executeTraininig.duration}
+                onStart={() => { console.log("Start!") }}
+                onDone={() => {
+                  if(executeList.length === 0) {
+                    return
+                  }
+                  const target = executeList.slice(0)[0]
+                  setExecuteTraining(target)
+                  setExecuteList(executeList.slice(1))
+                  if(progressRef.current) {
+                    progressRef.current.start()
+                  }
+                }}
+                />
+            </Flex>
             <Heading as='h2' size='xl' textAlign="center" m={4}>
-              実行リスト
-            </Heading>
-            <Box p={2}>
-              <Text>TrainingTime:&nbsp;{secToMins(executeList.reduce<number>((p, c) => {
+              <Text>実行リスト</Text>
+              <Text fontSize="md" >(TrainingTime:&nbsp;{secToMins(executeList.reduce<number>((p, c) => {
                 p = p + c.duration
                 return p
-              }, 0))}</Text>
-            </Box>
-            <Stack spacing='4'>
-              {executeList.map(item => (
+              }, 0))})</Text>
+            </Heading>
+            {executeList.length > 0 &&
+              <Flex mb={4}>
+                <Flex alignItems="center" p={4} bg="blue.600">
+                  <Text as="b" color="white">NEXT</Text>
+                </Flex>
+                <Box flexGrow={1}>
+                  <TrainingItem
+                    key={executeList[0].id}
+                    id={executeList[0].id}
+                    header={getTrainingTypes(executeList[0].type)?.name}
+                    name={executeList[0].name}
+                    description="説明仮置き"
+                    duration={executeList[0].duration || -1}
+                    bg={getTrainingTypes(executeList[0].type)?.bg}
+                    mode={ItemActions.delete}
+                    onAction={onItemDelete}
+                  />
+                </Box>
+              </Flex>
+            }
+
+            <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+              {executeList.slice(1).map(item => (
                   <TrainingItem
                     key={item.id}
                     id={item.id}
@@ -258,7 +281,7 @@ export default function Index(props: PageIndexProps) {
                   />
                 )
               )}
-            </Stack>
+            </SimpleGrid>
           </Box>
         </Flex>
       </ChakraProvider>
