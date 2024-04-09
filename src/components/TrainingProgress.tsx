@@ -15,7 +15,7 @@ type onPauseHandler = () => void
 type onNextHandler = () => void
 type onDoneHandler = () => void
 
-interface TrainingExecuteProps {
+interface TrainingProgressProps {
   id: string
   header?: string
   name: string
@@ -26,20 +26,20 @@ interface TrainingExecuteProps {
   onDone: onDoneHandler
 }
 
-interface TrainingExecuteState {
+interface TrainingProgressState {
   progress: {
     count: number
   }
 }
 
-export class TrainingExecute extends React.Component<TrainingExecuteProps, TrainingExecuteState> {
+export class TrainingProgress extends React.Component<TrainingProgressProps, TrainingProgressState> {
 
   timer: NodeJS.Timeout | undefined
   currentTime: number = 0
   
   isDone: boolean = true
 
-  constructor(props: TrainingExecuteProps) {
+  constructor(props: TrainingProgressProps) {
     super(props)
     this.state = {
       progress: {
@@ -90,14 +90,13 @@ export class TrainingExecute extends React.Component<TrainingExecuteProps, Train
   render(): React.ReactNode {
     const duration = this.props.duration !== -1 ? this.props.duration : '∞'
     return (
-      <Box mt={2}>
-        <Progress max={this.props.duration} value={this.state.progress.count} size="lg" />
+      <Flex height="100%">
+        <Progress flex={1} max={this.props.duration} value={this.state.progress.count} size="lg" />
         <Flex justifyContent="right">
           <Text fontSize="xs" color="gray.300">{this.state.progress.count}/{duration}</Text>
         </Flex>
         <audio id="progress-term" src="/wavs/maou_se_system47.wav" />
-        {/* <audio src="/wavs/maou_se_system49.wav" controls /> */}
-      </Box>
+      </Flex>
     )
   }
 }

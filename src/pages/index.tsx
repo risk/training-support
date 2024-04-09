@@ -12,8 +12,8 @@ import {
   Button
 } from '@chakra-ui/react'
 import { secToMins } from '@/utils/stringConverter'
-import { TrainingItem, ItemActions } from '@/components/trainingItem'
-import { TrainingExecute } from '@/components/TrainingExecute'
+import { TrainingItem, ItemActions } from '@/components/TrainingItem'
+import { TrainingProgress } from '@/components/TrainingProgress'
 import trainingTypesJson from '../data/trainingTypes.json'
 import trainingsJson from '../data/trainings.json'
 
@@ -214,7 +214,7 @@ export default function Index(props: PageIndexProps) {
               bg={getTrainingTypes(executeTraininig.type)?.bg || 'white'}
               mode={ItemActions.none}
             />
-            <TrainingExecute
+            <TrainingProgress
               ref={progressRef}
               id={executeTraininig.id}
               header={getTrainingTypes(executeTraininig.type)?.name}
