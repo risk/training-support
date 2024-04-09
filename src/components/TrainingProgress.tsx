@@ -3,10 +3,11 @@ import React, { useEffect } from 'react'
 import {
   Box,
   Flex,
-  HStack,
+  Stack,
   Text,
   Button,
-  Progress
+  CircularProgress,
+  CircularProgressLabel
 } from '@chakra-ui/react'
 import { CheckIcon, MinusIcon } from "@chakra-ui/icons"
 
@@ -16,6 +17,7 @@ type onNextHandler = () => void
 type onDoneHandler = () => void
 
 interface TrainingProgressProps {
+  hidden: boolean
   id: string
   header?: string
   name: string
@@ -90,13 +92,17 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
   render(): React.ReactNode {
     const duration = this.props.duration !== -1 ? this.props.duration : '∞'
     return (
-      <Flex height="100%">
-        <Progress flex={1} max={this.props.duration} value={this.state.progress.count} size="lg" />
-        <Flex justifyContent="right">
-          <Text fontSize="xs" color="gray.300">{this.state.progress.count}/{duration}</Text>
-        </Flex>
+      <>
+        {!this.props.hidden && (
+          <CircularProgress size={120} max={this.props.duration} value={this.state.progress.count}>
+            <CircularProgressLabel>
+              <Text fontSize="ms" color="gray.600">{this.state.progress.count}</Text>
+              <Text fontSize="xs" color="gray.400">{duration}</Text>
+            </CircularProgressLabel>
+          </CircularProgress>
+        )}
         <audio id="progress-term" src="/wavs/maou_se_system47.wav" />
-      </Flex>
+      </>
     )
   }
 }
