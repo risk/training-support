@@ -66,6 +66,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
+      basePath: process.env.BASE_PATH || '',
       items,
       types
     }
@@ -168,7 +169,7 @@ export default function Index(props: PageIndexProps) {
           </Box>
           <Box flex="1" p={4}>
             <Heading as='h2' size='xl' textAlign="center" m={4}>
-              実行メニュー
+              実行メニュー{ props.basePath }
             </Heading>
             <HStack mb={4} spacing={4} justifyContent="center">
               <Button onClick={() => {
