@@ -73,14 +73,6 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Define environment
-        run: |
-          echo "TEST=${TEST}"
-          echo "BASE_PATH=${BASE_PATH}"
-          echo "BASE_PATH=${BASE_PATH}" >> .env
-        env:
-          TEST: ${{ toJSON(vars) }}
-          BASE_PATH: ${{ vars.BASE_PATH }}
       - name: Build with Next.js
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} next build
