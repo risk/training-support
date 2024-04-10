@@ -117,12 +117,12 @@ export default function Index(props: PageIndexProps) {
   return (
     <main>
       <ChakraProvider>
-        <Heading as='h2' size='2xl' m={4}>
+        <Heading as='h2' size='xl' m={2}>
           トレーニングサポート
         </Heading>
         <Flex p={4}>
           <Box flex="1" p={4}>
-            <Heading as='h2' size='xl' textAlign="center" m={4}>
+            <Heading as='h2' size='lg' textAlign="center" mb={4}>
               メニュー
             </Heading>
             <HStack mb={4} spacing={4} justifyContent="center">
@@ -167,7 +167,7 @@ export default function Index(props: PageIndexProps) {
             </SimpleGrid>
           </Box>
           <Box flex="1" p={4}>
-            <Heading as='h2' size='xl' textAlign="center" m={4}>
+            <Heading as='h2' size='xl' textAlign="center" mb={4}>
               実行メニュー
             </Heading>
             <HStack mb={4} spacing={4} justifyContent="center">
@@ -175,12 +175,12 @@ export default function Index(props: PageIndexProps) {
                 if(!progressRef.current) {
                   return
                 }
-
-                if(executeList.length === 0) {
+                if(!progressRef.current.isDone) {
+                  console.log('resume')
+                  progressRef.current.start()
                   return
                 }
-                if(!progressRef.current.isDone) {
-                  progressRef.current.start()
+                if(executeList.length === 0) {
                   return
                 }
                 const target = executeList.slice(0)[0]
@@ -195,15 +195,12 @@ export default function Index(props: PageIndexProps) {
                 }
               }}>Pause</Button>
               <Button onClick={() => {
-                if(executeList.length === 0) {
-                  return
-                }
                 if(progressRef.current) {
                   progressRef.current.done()
                 }
               }}>Done</Button>
             </HStack>
-            <Flex>
+            <Flex alignItems="center">
               <Stack flexGrow={1}>
                 <TrainingItem
                   hidden={executeTraininig.id === ''}
