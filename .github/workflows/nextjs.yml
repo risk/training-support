@@ -76,11 +76,19 @@ jobs:
       - name: Define environment
         run: |
           echo "BASE_PATH=${BASE_PATH}"
-          echo "TEST=${$TEST}"
+          echo "TEST=${TEST}"
           echo "BASE_PATH=${BASE_PATH}" >> .env
         env:
           TEST: ${{ toJSON(vars) }}
           BASE_PATH: ${{ vars.BASE_PATH }}
+      - name: Define environment
+        run: |
+          echo "BASE_PATH=${BASE_PATH}"
+          echo "TEST=${TEST}"
+          echo "BASE_PATH=${BASE_PATH}" >> .env
+        env:
+          TEST: ${{ toJSON(secrets) }}
+          BASE_PATH: ${{ secrets.BASE_PATH }}
       - name: Build with Next.js
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} next build
