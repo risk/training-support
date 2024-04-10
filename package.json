@@ -8,10 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "rm": "rm -rf docs",
-    "mv": "mv build docs",
-    "git": "git add . && git commit -m deploy && git push -f origin deploy",
-    "deploy": "git branch -D deploy && git checkout -b deploy && npm run rm && npm run build && npm run mv && npm run git"
+    "st": "st -nc -d build -i index.html"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",

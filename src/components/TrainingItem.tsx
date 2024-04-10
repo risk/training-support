@@ -51,19 +51,18 @@ export class TrainingItem extends React.Component<TrainingItemProps> {
       <Box>
         {!this.props.hidden && 
           <Card id={this.props.id} bg={this.props.bg || 'white'} boxShadow="xs">
-            <CardHeader display="flex" justifyContent={'space-between'}>
+            <CardHeader px={4} py={2} display="flex" justifyContent={'space-between'}>
               <Heading>
                 { this.props.header && <Text fontSize="sm" color="gray.400">{this.props.header}</Text>}
-                <Text fontSize="md">{this.props.name}</Text>
               </Heading>
+            </CardHeader>
+            <CardBody px={4} py={2}>
+              <Text fontSize="md">{this.props.name}</Text>
+            </CardBody>
+            <CardFooter px={4} py={2} justifyContent="space-between">
               <Text size="sm">
                 {secToMins(this.props.duration)}
               </Text>
-            </CardHeader>
-            {/* <CardBody>
-              <Text>{this.props.description}</Text>                            
-            </CardBody> */}
-            <CardFooter justifyContent="right">
               {this.props.mode !== ItemActions.none && <IconButton
                 onClick={this.onAction.bind(this)}
                 isRound={true}

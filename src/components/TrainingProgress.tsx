@@ -38,6 +38,8 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
   
   isDone: boolean = true
 
+  se: HTMLAudioElement | undefined = undefined
+
   constructor(props: TrainingProgressProps) {
     super(props)
     this.state = {
@@ -60,6 +62,12 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
   }
 
   start() {
+    if(this.timer !== undefined) {
+      return
+    }
+    if(this.state.progress.count === 0) {
+      this.se?.play()
+    }
     console.log('start')
     if(this.isDone) {
       this.setState({
@@ -74,23 +82,33 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
 
   pause() {
     console.log('pause')
-    clearInterval(this.timer)
-    this.timer = undefined
-    if(this.props.onPause) {
-      this.props.onPause()
-    } 
-  }
-
-  done() {
-    const se = document.getElementById('progress-term') as HTMLAudioElement
-    se.play()
-    console.log('done', this.timer)
     if(this.timer) {
       clearInterval(this.timer)
       this.timer = undefined
+      if(this.props.onPause) {
+        this.props.onPause()
+      } 
     }
-    this.isDone = true
+  }
+
+  done() {
+    console.log('done', this.timer)
+    this.se?.play()
+    if(this.timer) {
+      clearInterval(this.timer)
+      this.timer = undefined
+      this.isDone = true
+    }
+    this.setState({
+      progress: {
+        count: this.props.duration
+      } 
+    })
     this.props.onDone()
+  }
+
+  componentDidMount(): void {
+    this.se = document.getElementById('progress-term') as HTMLAudioElement
   }
 
   render(): React.ReactNode {
@@ -105,7 +123,7 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
             </CircularProgressLabel>
           </CircularProgress>
         )}
-        <audio id="progress-term" src={staticPaths('/wavs/maou_se_system47.wav')} />
+        <audio id="progress-term" src={staticPaths('/wavs/maou_se_system47.mp3')} />
       </>
     )
   }
