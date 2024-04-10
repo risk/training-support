@@ -77,7 +77,6 @@ jobs:
         run: |
           echo "BASE_PATH=${{ vars.BASE_PATH }}" >> .env
           ${{ steps.detect-package-manager.outputs.runner }} next build
-        env:
        - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
