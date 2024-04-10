@@ -66,7 +66,6 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      basePath: process.env.BASE_PATH || '',
       items,
       types
     }
