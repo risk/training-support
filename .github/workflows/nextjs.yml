@@ -75,23 +75,17 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Define environment
         run: |
-          echo "BASE_PATH=${BASE_PATH}"
           echo "TEST=${TEST}"
+          echo "BASE_PATH=${BASE_PATH}"
           echo "BASE_PATH=${BASE_PATH}" >> .env
         env:
           TEST: ${{ toJSON(vars) }}
           BASE_PATH: ${{ vars.BASE_PATH }}
-      - name: Define environment
-        run: |
-          echo "BASE_PATH=${BASE_PATH}"
-          echo "TEST=${TEST}"
-          echo "BASE_PATH=${BASE_PATH}" >> .env
-        env:
-          TEST: ${{ toJSON(secrets) }}
-          BASE_PATH: ${{ secrets.BASE_PATH }}
       - name: Build with Next.js
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          BASE_PATH: "/training-support"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
