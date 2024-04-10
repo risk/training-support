@@ -74,7 +74,9 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Define environment
-        run: echo "BASE_PATH=${{ vars.BASE_PATH }}" >> .env
+        run: |
+          echo "BASE_PATH=${{ vars.BASE_PATH }}"
+          echo "BASE_PATH=${{ vars.BASE_PATH }}" >> .env
       - name: Build with Next.js
         run: |
           echo "BASE_PATH=${{ vars.BASE_PATH }}" >> .env
