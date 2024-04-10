@@ -1,15 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import {
-  Box,
-  Flex,
-  Stack,
   Text,
-  Button,
   CircularProgress,
   CircularProgressLabel
 } from '@chakra-ui/react'
-import { CheckIcon, MinusIcon } from "@chakra-ui/icons"
+
+import { staticPaths } from '@/utils/pathAdjust'
 
 type onStartHandler = () => void
 type onPauseHandler = () => void
@@ -51,12 +48,13 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
   }
 
   updateTimer() {
+    const count = this.state.progress.count + 1
     this.setState({
       progress: {
-        count: this.state.progress.count + 1
+        count
       }
     })
-    if(this.props.duration !== -1 && this.state.progress.count >= this.props.duration) {
+    if(this.props.duration !== -1 && count >= this.props.duration) {
       this.done()
     }
   }
@@ -107,7 +105,7 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
             </CircularProgressLabel>
           </CircularProgress>
         )}
-        <audio id="progress-term" src="/wavs/maou_se_system47.wav" />
+        <audio id="progress-term" src={staticPaths('/wavs/maou_se_system47.wav')} />
       </>
     )
   }
