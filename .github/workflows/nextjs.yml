@@ -75,11 +75,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: |
+          cp -f ./.env.ghp.production ./.env.production
+          cat ./.env.production
           ${{ steps.detect-package-manager.outputs.runner }} next build
-        env:
-          HOST: "risk.github.io"
-          BASE_PATH: "/training-support"
-          OUTPUT: "export"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
