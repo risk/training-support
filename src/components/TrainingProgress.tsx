@@ -123,7 +123,7 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
             </CircularProgressLabel>
           </CircularProgress>
         )}
-        <audio id="progress-term" src={assetsPath('/assets/wavs/maou_se_system47.mp3')} />
+        <audio id="progress-term" src={assetsPath('/sound/maou_se_system47.mp3')} />
       </>
     )
   }

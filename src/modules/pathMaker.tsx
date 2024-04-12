@@ -3,5 +3,5 @@ export const assetsPath = (url: string): string => {
   const host = process.env.HOST
   const port = process.env.PORT
   const base = process.env.BASE_PATH
-  return `${USE_HTTP ? 'http' : 'https'}://${host}${port || '' }${base || ''}/assets${url}` 
+  return `${USE_HTTP ? 'http' : 'https'}://${host}${port ? `:${port}` : '' }${base || ''}/assets${url}` 
 }

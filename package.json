@@ -8,7 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "st": "st -nc -d build -i index.html"
+    "st": "st -nc -d build -i index.html",
+    "compose-build": "docker compose --env-file ./.env.docker.production build",
+    "compose-up": "docker compose --env-file ./.env.docker.production up",
+    "compose-run": "npm run compose-build && npm run compose-up",
+    "docker-connect-sh": "docker exec -it $(docker ps -f name=training-support-app --format {{.ID}}) /bin/sh"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
