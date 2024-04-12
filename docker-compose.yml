@@ -1,0 +1,11 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+      args:
+        PORT: ${HOST_PORT} # Build時のポートは、外部の待受ポートを指定する（SSG時点でポート番号を埋め込むため）
+    environment:
+       PORT: ${PORT} # 実行時のポートは内部のポート番号
+    ports:
+      - "${HOST_PORT}:${PORT}" # 外向けポートに、内部ポートをつなぐ

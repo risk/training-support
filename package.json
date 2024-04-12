@@ -4,11 +4,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "PORT=3300 next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "st": "st -nc -d build -i index.html"
+    "st": "st -nc -d build -i index.html",
+    "compose-build": "docker compose --env-file ./.env.docker.production build",
+    "compose-up": "docker compose --env-file ./.env.docker.production up",
+    "compose-run": "npm run compose-build && npm run compose-up",
+    "docker-connect-sh": "docker exec -it $(docker ps -f name=training-support-app --format {{.ID}}) /bin/sh"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -17,8 +21,10 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@types/uuid": "^9.0.8",
+    "axios": "^1.6.8",
     "framer-motion": "^11.0.25",
     "next": "14.1.4",
+    "node-fetch": "^3.3.2",
     "react": "^18",
     "react-dom": "^18",
     "uuid": "^9.0.1"

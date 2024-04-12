@@ -15,8 +15,8 @@ import {
 import { secToMins } from '@/utils/stringConverter'
 import { TrainingItem, ItemActions } from '@/components/TrainingItem'
 import { TrainingProgress } from '@/components/TrainingProgress'
-import trainingTypesJson from '../data/trainingTypes.json'
-import trainingsJson from '../data/trainings.json'
+import { assetsPath } from '@/modules/pathMaker'
+import { getJsonFile } from '@/modules/fileLoader'
 
 interface TrainingTypeJson {
   id: number
@@ -46,6 +46,9 @@ interface Training {
 }
 const defaultTrainingDuration: number = 30
 
+import trainingTypesJson from '../../public/assets/json/trainingTypes.json'
+import trainingsJson from '../../public/assets/json/trainings.json'
+
 export const getStaticProps = async () => {
 
   const setTrainingType = (types: TrainingTypeJson[]): TrainingType[] => {
@@ -72,6 +75,8 @@ export const getStaticProps = async () => {
   }
 }
 
+
+
 type PageIndexProps = InferGetStaticPropsType<typeof getStaticProps>
 
 export default function Index(props: PageIndexProps) {
@@ -82,7 +87,6 @@ export default function Index(props: PageIndexProps) {
     }
     return props.types.find(type => type.id === typeId)
   }
-
 
   const [executeList, setExecuteList] = useState<Training[]>([]);
   const [executeTraininig, setExecuteTraining] = useState<Training>({
@@ -156,7 +160,6 @@ export default function Index(props: PageIndexProps) {
                     id={item.id}
                     header={getTrainingTypes(item.type)?.name}
                     name={item.name}
-                    description="説明仮置き"
                     duration={item.duration || -1}
                     bg={getTrainingTypes(item.type)?.bg || 'white'}
                     mode={ItemActions.add}
@@ -207,7 +210,6 @@ export default function Index(props: PageIndexProps) {
                   id={`exec-${executeTraininig.id}`}
                   header={getTrainingTypes(executeTraininig.type)?.name}
                   name={executeTraininig.name}
-                  description="説明仮置き"
                   duration={executeTraininig.duration || -1}
                   bg={getTrainingTypes(executeTraininig.type)?.bg || 'white'}
                   mode={ItemActions.none}
@@ -253,7 +255,6 @@ export default function Index(props: PageIndexProps) {
                     id={executeList[0].id}
                     header={getTrainingTypes(executeList[0].type)?.name}
                     name={executeList[0].name}
-                    description="説明仮置き"
                     duration={executeList[0].duration || -1}
                     bg={getTrainingTypes(executeList[0].type)?.bg}
                     mode={ItemActions.delete}
@@ -270,7 +271,6 @@ export default function Index(props: PageIndexProps) {
                     id={item.id}
                     header={getTrainingTypes(item.type)?.name}
                     name={item.name}
-                    description="説明仮置き"
                     duration={item.duration || -1}
                     bg={getTrainingTypes(item.type)?.bg}
                     mode={ItemActions.delete}

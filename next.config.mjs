@@ -3,7 +3,7 @@
 const nextConfig = {
   basePath: process.env.BASE_PATH || '',
   distDir: 'build',
-  output: 'export'
+  output: process.env.OUTPUT
 }
 
 export default nextConfig

@@ -77,7 +77,9 @@ jobs:
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
+          HOST: "risk.github.io"
           BASE_PATH: "/training-support"
+          OUTPUT: "export"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
