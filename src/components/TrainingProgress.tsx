@@ -6,7 +6,7 @@ import {
   CircularProgressLabel
 } from '@chakra-ui/react'
 
-import { staticPaths } from '@/utils/pathAdjust'
+import { assetsPath } from '@/modules/pathMaker'
 
 type onStartHandler = () => void
 type onPauseHandler = () => void
@@ -123,7 +123,7 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
             </CircularProgressLabel>
           </CircularProgress>
         )}
-        <audio id="progress-term" src={staticPaths('/wavs/maou_se_system47.mp3')} />
+        <audio id="progress-term" src={assetsPath('/assets/wavs/maou_se_system47.mp3')} />
       </>
     )
   }

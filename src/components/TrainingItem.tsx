@@ -25,7 +25,6 @@ interface TrainingItemProps {
   id: string
   header?: string
   name: string
-  description: string
   duration: number
   bg?: string
   mode: ItemAction
