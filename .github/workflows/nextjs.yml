@@ -79,7 +79,7 @@ jobs:
         env:
           HOST: "risk.github.io"
           BASE_PATH: "/training-support"
-          STATIC_PAGE: "1"
+          OUTPUT: "export"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
