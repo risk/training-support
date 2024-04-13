@@ -3,7 +3,7 @@ import {
   Box
 } from '@chakra-ui/react'
 
-import { Training, TrainingType } from '@/components/Taining'
+import { Training, TrainingType } from '@/components/client/Taining'
 
 import trainingTypesJson from '../../public/assets/json/trainingTypes.json'
 import trainingsJson from '../../public/assets/json/trainings.json'
@@ -13,7 +13,7 @@ interface TrainingTypeJson {
   name: string
   bg?: string
 }
-const defaultTrainingTypeBg: string = 'blue.50'
+const defaultTrainingTypeBg: string = 'blue'
 interface TrainingJson {
   id: string
   type?: number
