@@ -1,12 +1,22 @@
 import React from 'react'
 
 import {
+  Flex,
+  Heading,
   Text,
+  Divider,
   CircularProgress,
-  CircularProgressLabel
+  CircularProgressLabel,
+  Stack,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Center
 } from '@chakra-ui/react'
 
-import { assetsPath } from '@/modules/pathMaker'
+import { secToMins } from '@/utils/stringConverter'
+import { staticPath } from '@/utils/pathAdjust'
 
 type onStartHandler = () => void
 type onPauseHandler = () => void
@@ -17,8 +27,8 @@ interface TrainingProgressProps {
   id: string
   header?: string
   name: string
-  description: string
   duration: number
+  bg?: string
   onStart: onStartHandler
   onPause?: onPauseHandler
   onDone: onDoneHandler
@@ -115,14 +125,36 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
     return (
       <>
         {!this.props.hidden && (
-          <CircularProgress size={120} max={this.props.duration} value={this.state.progress.count}>
-            <CircularProgressLabel>
-              <Text fontSize="ms" color="gray.600">{this.state.progress.count}</Text>
-              <Text fontSize="xs" color="gray.400">{duration}</Text>
-            </CircularProgressLabel>
-          </CircularProgress>
+          <Card id={this.props.id} direction={'row'} bg={this.props.bg ? `${this.props.bg}.100` : 'purple.100'} boxShadow="xs" overflow='hidden'>
+            <Flex alignItems='center' bg={this.props.bg ? `${this.props.bg}.300` : 'purple.300'}>
+              <CircularProgress w={120} h={120} size={120} color={this.props.bg ? `${this.props.bg}.600` : 'purple.600'} max={this.props.duration} value={this.state.progress.count}>
+                <CircularProgressLabel>
+                  <Text fontSize="ms" color="gray.100">{this.state.progress.count}</Text>
+                  <Center>
+                    <Divider colorScheme="gray.100" width='50%' />
+                  </Center>
+                  <Text fontSize="xs" color="gray.200">{duration}</Text>
+                </CircularProgressLabel>
+              </CircularProgress>
+            </Flex>
+            <Stack flexGrow={1}>
+              <CardHeader px={4} py={2}>
+                <Heading>
+                  { this.props.header && <Text fontSize="sm" color="gray.600">{this.props.header}</Text>}
+                </Heading>
+              </CardHeader>
+              <CardBody px={4} py={2}>
+                <Text fontSize="md">{this.props.name}</Text>
+              </CardBody>
+              <CardFooter px={4} py={2} justifyContent="space-between">
+                <Text size="sm">
+                  {secToMins(this.props.duration)}
+                </Text>
+              </CardFooter>
+            </Stack>
+          </Card>
         )}
-        <audio id="progress-term" src={assetsPath('/sound/maou_se_system47.mp3')} />
+        <audio id="progress-term" src={staticPath('/assets/sound/maou_se_system47.mp3')} />
       </>
     )
   }

@@ -1,7 +1,4 @@
-export const staticPaths = (url: string) => {
-  const basePath = process.env.BASE_PATH
-  if(basePath) {
-    return `${basePath}` + url
-  }
-  return url
+export const staticPath = (url: string) => {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH
+  return `${basePath || ''}${url}`
 }
