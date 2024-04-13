@@ -10,7 +10,6 @@ import { assetsPath } from '@/modules/pathMaker'
 
 type onStartHandler = () => void
 type onPauseHandler = () => void
-type onNextHandler = () => void
 type onDoneHandler = () => void
 
 interface TrainingProgressProps {
