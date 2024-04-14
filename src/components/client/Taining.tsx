@@ -22,7 +22,12 @@ import {
   Tab,
   TabPanels,
   TabPanel,
-  useToast
+  useToast,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon
 } from '@chakra-ui/react'
 import { secToMins } from '@/utils/stringConverter'
 import { TrainingCard, ItemActions } from '@/components/client/TrainingCard'
@@ -109,32 +114,44 @@ export const Training: React.FC<TrainingPropos> = ({types, items}) => {
                     <Button onClick={() => {                      
                       
                     }}>Add all training</Button>
-                    {types.filter(type => type.id !== 0).map((type, index) => {
-                      return (
+                    {types.filter(type => type.id !== 0).map((type, index) => (
                         <Button key={`preset-${index}`} onClick={() => {
                           setExecuteList(makeTrainingList(items, type.id))
                         }}>Add {type.name} items</Button>
                       )
-                    })}
+                    )}
                   </VStack>
                 </TabPanel>
                 <TabPanel>
-                  <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
-                    {items.map(item => (
-                        <TrainingCard
-                          key={item.id}
-                          id={item.id}
-                          header={getTrainingTypes(types, item.type)?.name}
-                          name={item.name}
-                          duration={item.duration || -1}
-                          bg={getTrainingTypes(types, item.type)?.bg || 'white'}
-                          mode={ItemActions.add}
-                          onAction={onItemAdd}
-                        />
-                      )
-                    )}
-                  </SimpleGrid>
-
+                  <Accordion allowToggle>
+                    {types.map((type, index) => (
+                      <AccordionItem key={`manual-type-${index}`}>
+                        <AccordionButton _expanded={{ bg: 'blue.600', color: 'white' }}>
+                          <Box as='span' flex='1' textAlign='left'>
+                            {type.name}
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                        <AccordionPanel pb={4}>
+                          <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+                            {items.filter(item => item.type === type.id).map((item, index) => (
+                                <TrainingCard
+                                  key={`manual-item-${index}`}
+                                  id={item.id}
+                                  header={getTrainingTypes(types, item.type)?.name}
+                                  name={item.name}
+                                  duration={item.duration || -1}
+                                  bg={getTrainingTypes(types, item.type)?.bg || 'white'}
+                                  mode={ItemActions.add}
+                                  onAction={onItemAdd}
+                                />
+                              )
+                            )}
+                          </SimpleGrid>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
                 </TabPanel>
               </TabPanels>
             </Tabs>
