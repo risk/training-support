@@ -20,9 +20,12 @@ export async function speachText(text: string, rate: number = 1, pitch: number =
     timeout = timeout > 0 ? timeout -1 : 0
   }
   const voices = synth.getVoices()
-  const voice = voices.find(v => v.name === 'Google 日本語')
+  let voice = voices.find(v => v.name === 'Google 日本語')
   if(voice === undefined) {
-    return
+    voice = voices.find(v => v.lang === 'ja-JP')
+    if(voice === undefined) {
+      return
+    }
   }
   utterThis.voice = voice
   utterThis.pitch = pitch || 1
