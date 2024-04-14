@@ -111,7 +111,7 @@ export const Training: React.FC<TrainingPropos> = ({types, items}) => {
                 <TabPanel>
                   <VStack spacing={4} justifyContent="center">
                     <Button onClick={() => {                      
-                      
+                      setExecuteList(makeTrainingList(items))                      
                     }}>Add all training</Button>
                     {types.filter(type => type.id !== 0).map((type, index) => (
                         <Button key={`preset-${index}`} onClick={() => {

@@ -7,7 +7,7 @@ interface SpeachProps {
 
 const sleep = (msec: number) => new Promise(resolve => setTimeout(resolve, msec));
 
-export async function speachText(text: string, pitch: number = 1, rate: number = 1) {
+export async function speachText(text: string, rate: number = 1, pitch: number = 1) {
   if(text === '') {
     return
   }
@@ -20,7 +20,7 @@ export async function speachText(text: string, pitch: number = 1, rate: number =
     timeout = timeout > 0 ? timeout -1 : 0
   }
   const voices = synth.getVoices()
-  const voice = voices.find(v => v.lang === 'ja-JP')
+  const voice = voices.find(v => v.name === 'Google 日本語')
   if(voice === undefined) {
     return
   }
