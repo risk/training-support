@@ -22,7 +22,7 @@ type ItemAction = (typeof ItemActions)[keyof typeof ItemActions];
 
 type onActionHandler = (id: string) => void
 
-interface TrainingItemProps {
+interface TrainingCardProps {
   infoLabel?: string
   hidden?: boolean
   id: string
@@ -34,8 +34,8 @@ interface TrainingItemProps {
   onAction?: onActionHandler
 }
 
-export class TrainingItem extends React.Component<TrainingItemProps> {
-  constructor(props: TrainingItemProps) {
+export class TrainingCard extends React.Component<TrainingCardProps> {
+  constructor(props: TrainingCardProps) {
     super(props)
   }
 

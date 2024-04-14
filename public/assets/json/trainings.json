@@ -3,7 +3,7 @@
     "id": "common-1", 
     "type": 0,
     "name": "準備",
-    "duration": 60
+    "duration": 10
   },
   {
     "id": "common-2",
@@ -14,8 +14,8 @@
   {
     "id": "common-3",
     "type": 0,
-    "name": "休憩 １分",
-    "duration": 60
+    "name": "休憩 ３０秒",
+    "duration": 30
   },
   {
     "id": "common-4",

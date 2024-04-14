@@ -3,10 +3,11 @@ import {
   Box
 } from '@chakra-ui/react'
 
-import { Training, TrainingType } from '@/components/client/Taining'
-
 import trainingTypesJson from '../../public/assets/json/trainingTypes.json'
 import trainingsJson from '../../public/assets/json/trainings.json'
+import { TrainingItem, TrainingType } from '@/modules/trainingData'
+
+import { Training } from '@/components/client/Taining'
 
 interface TrainingTypeJson {
   id: number
@@ -32,10 +33,10 @@ async function getTrainingParameter(): Promise<{types: TrainingType[], items: Tr
     })
   }
 
-  const setTraining = (trainings: TrainingJson[]): Training[] => {
-    return trainings.map((training: TrainingJson) : Training => {
+  const setTraining = (trainings: TrainingJson[]): TrainingItem[] => {
+    return trainings.map((training: TrainingJson) : TrainingItem => {
       training.duration = training.duration || defaultTrainingDuration
-      return training as Training
+      return training as TrainingItem
     })
   }
   const types = setTrainingType(trainingTypesJson as TrainingTypeJson[])

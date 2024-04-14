@@ -54,13 +54,14 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
     this.state = {
       progress: {
         count: 0
-      }
+      },
     }
   }
 
   updateTimer() {
     const count = this.state.progress.count + 1
     this.setState({
+      ...this.state,
       progress: {
         count
       }
@@ -80,6 +81,7 @@ export class TrainingProgress extends React.Component<TrainingProgressProps, Tra
     console.log('start')
     if(this.isDone) {
       this.setState({
+        ...this.state,
         progress: {
           count: 0
         } 
