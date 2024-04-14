@@ -31,7 +31,6 @@ import { AddIcon } from '@chakra-ui/icons'
 import { speachText } from '@/utils/speach'
 import {
   TrainingType, TrainingItem,
-  getTrainingItem,
   getTrainingTypes,
   makeTrainingList
 } from '@/modules/trainingData'
