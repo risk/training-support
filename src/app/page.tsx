@@ -24,7 +24,7 @@ interface TrainingJson {
 
 const defaultTrainingDuration: number = 30
 
-async function getTrainingParameter(): Promise<{types: TrainingType[], items: Training[]}> {
+async function getTrainingParameter(): Promise<{types: TrainingType[], items: TrainingItem[]}> {
 
   const setTrainingType = (types: TrainingTypeJson[]): TrainingType[] => {
     return types.map((type: TrainingTypeJson) : TrainingType => {
