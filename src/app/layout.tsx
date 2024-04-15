@@ -1,12 +1,8 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import "./globals.css"
 
-import {
-  ChakraProvider
-} from '@chakra-ui/react'
-
-const inter = Inter({ subsets: ["latin"] })
+import { fonts } from "./fonts"
+import { Providers } from "@/app/provider"
 
 export const metadata: Metadata = {
   title: "training-support",
@@ -19,10 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={inter.className}>
-        <ChakraProvider cssVarsRoot="body">
+      <body className={fonts.rubik.variable}>
+        <Providers>
           {children}
-        </ChakraProvider>
+        </Providers>
       </body>
     </html>
   );
